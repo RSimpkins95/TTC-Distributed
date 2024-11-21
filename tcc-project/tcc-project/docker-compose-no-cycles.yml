@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  client1:
+    build: .
+    hostname: client1
+    environment:
+      - CLIENT_ID=1
+      - WISHLIST=2,3,4
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
+    networks:
+      ttc_net:
+        ipv4_address: 172.20.0.2
+    ports:
+      - "5001:5001/udp"
+
+  client2:
+    build: .
+    hostname: client2
+    environment:
+      - CLIENT_ID=2
+      - WISHLIST=3,4
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
+    networks:
+      ttc_net:
+        ipv4_address: 172.20.0.3
+    ports:
+      - "5002:5002/udp"
+
+  client3:
+    build: .
+    hostname: client3
+    environment:
+      - CLIENT_ID=3
+      - WISHLIST=4
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
+    networks:
+      ttc_net:
+        ipv4_address: 172.20.0.4
+    ports:
+      - "5003:5003/udp"
+
+  client4:
+    build: .
+    hostname: client4
+    environment:
+      - CLIENT_ID=4
+      - WISHLIST=
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
+    networks:
+      ttc_net:
+        ipv4_address: 172.20.0.5
+    ports:
+      - "5004:5004/udp"
+
+networks:
+  ttc_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
