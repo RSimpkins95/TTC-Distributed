@@ -3,12 +3,11 @@ version: '3.8'
 services:
   client1:
     build: .
-    container_name: client1
     hostname: client1
     environment:
       - CLIENT_ID=1
-      - WISHLIST=2,3,4
-      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
+      - WISHLIST=2,3,4,5,6,7
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4,client5:5,client6:6,client7:7
     networks:
       ttc_net:
         ipv4_address: 172.20.0.2
@@ -17,12 +16,11 @@ services:
 
   client2:
     build: .
-    container_name: client2
     hostname: client2
     environment:
       - CLIENT_ID=2
-      - WISHLIST=3,4,1
-      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
+      - WISHLIST=3,4,5,6,7,1
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4,client5:5,client6:6,client7:7
     networks:
       ttc_net:
         ipv4_address: 172.20.0.3
@@ -31,12 +29,11 @@ services:
 
   client3:
     build: .
-    container_name: client3
     hostname: client3
     environment:
       - CLIENT_ID=3
-      - WISHLIST=4,1,2
-      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
+      - WISHLIST=4,5,6,7,1,2
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4,client5:5,client6:6,client7:7
     networks:
       ttc_net:
         ipv4_address: 172.20.0.4
@@ -45,17 +42,55 @@ services:
 
   client4:
     build: .
-    container_name: client4
     hostname: client4
     environment:
       - CLIENT_ID=4
-      - WISHLIST=1,2,3
-      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
+      - WISHLIST=5,6,7,1,2,3
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4,client5:5,client6:6,client7:7
     networks:
       ttc_net:
         ipv4_address: 172.20.0.5
     ports:
       - "5004:5004/udp"
+
+  client5:
+    build: .
+    hostname: client5
+    environment:
+      - CLIENT_ID=5
+      - WISHLIST=6,7,1,2,3,4
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4,client5:5,client6:6,client7:7
+    networks:
+      ttc_net:
+        ipv4_address: 172.20.0.6
+    ports:
+      - "5005:5005/udp"
+
+  client6:
+    build: .
+    hostname: client6
+    environment:
+      - CLIENT_ID=6
+      - WISHLIST=7,1,2,3,4,5
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4,client5:5,client6:6,client7:7
+    networks:
+      ttc_net:
+        ipv4_address: 172.20.0.7
+    ports:
+      - "5006:5006/udp"
+
+  client7:
+    build: .
+    hostname: client7
+    environment:
+      - CLIENT_ID=7
+      - WISHLIST=1,2,3,4,5,6
+      - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4,client5:5,client6:6,client7:7
+    networks:
+      ttc_net:
+        ipv4_address: 172.20.0.8
+    ports:
+      - "5007:5007/udp"
 
 networks:
   ttc_net:

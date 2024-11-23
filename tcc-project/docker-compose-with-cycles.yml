@@ -1,12 +1,18 @@
 version: '3.8'
 
+#Expected output:
+#Client 1 assigned house: 2
+#Client 2 assigned house: 1
+#Client 3 assigned house: 3
+#Client 4 assigned house: 4
+
 services:
   client1:
     build: .
     hostname: client1
     environment:
       - CLIENT_ID=1
-      - WISHLIST=2,3,4
+      - WISHLIST=2,3,4,1
       - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
     networks:
       ttc_net:
@@ -19,7 +25,7 @@ services:
     hostname: client2
     environment:
       - CLIENT_ID=2
-      - WISHLIST=1,3,4
+      - WISHLIST=1,3,4,2
       - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
     networks:
       ttc_net:
@@ -32,7 +38,7 @@ services:
     hostname: client3
     environment:
       - CLIENT_ID=3
-      - WISHLIST=2,1,4
+      - WISHLIST=2,1,4,3
       - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
     networks:
       ttc_net:
@@ -45,7 +51,7 @@ services:
     hostname: client4
     environment:
       - CLIENT_ID=4
-      - WISHLIST=1,2,3
+      - WISHLIST=1,2,4,3
       - CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
     networks:
       ttc_net:

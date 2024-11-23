@@ -21,13 +21,13 @@ WORKDIR /app
 # Copy the built jar file from the build stage
 COPY --from=build /app/target/ttc-client-1.0-SNAPSHOT.jar /app/ttc-client.jar
 
-# Expose the UDP ports
-EXPOSE 5001/udp 5002/udp 5003/udp 5004/udp
+# Expose UDP ports for the clients
+EXPOSE 5001/udp 5002/udp 5003/udp 5004/udp 5005/udp
 
-# Set environment variables (can be overridden in docker-compose)
+# Set default environment variables
 ENV CLIENT_ID=1
-ENV WISHLIST=2,3,4
-ENV CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4
+ENV WISHLIST=2,3,4,5
+ENV CLIENT_ADDRESSES=client1:1,client2:2,client3:3,client4:4,client5:5
 
 # Run the application
 CMD ["java", "-cp", "/app/ttc-client.jar", "org.example.Client.Client"]
