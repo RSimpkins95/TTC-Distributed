@@ -35,6 +35,7 @@ public class Client implements Runnable {
     public void run() {
         try {
             new Thread(this::receiveMessages).start();
+            Thread.sleep(2500); // Give time for every client to connect
             remainingClients = clientAddresses.size();
             while (!assigned) {
                 if(!active){
@@ -46,7 +47,7 @@ public class Client implements Runnable {
             }
 
             System.out.println(assignment);
-            Thread.sleep(5000);
+            Thread.sleep(5000); // Give time for algorithm to complete
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -74,6 +75,7 @@ public class Client implements Runnable {
                 cycleSet.add(targetID);
             }
 
+            String message = String.join("|", tokens);
             broadcastMessage("CYCLE_STOP|" + clientId + "|" + cycleSet.size());
         }else{
             String[] updatedTokens = new String[tokens.length + 1];
