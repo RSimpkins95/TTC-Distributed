@@ -35,8 +35,8 @@ public class Client implements Runnable {
     public void run() {
         try {
             new Thread(this::receiveMessages).start();
-            Thread.sleep(2500); // Give time for every client to connect
             remainingClients = clientAddresses.size();
+            Thread.sleep(10000); // Give time for every client to connect
             while (!assigned) {
                 if(!active){
                     active = true;
@@ -47,7 +47,7 @@ public class Client implements Runnable {
             }
 
             System.out.println(assignment);
-            Thread.sleep(5000); // Give time for algorithm to complete
+            Thread.sleep(30000); // Give time for algorithm to complete
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
